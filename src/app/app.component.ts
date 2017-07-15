@@ -34,3 +34,18 @@ export class Card {
     this.isMatched = false;
   }
 }
+
+export class Score {
+  id: number;
+  name: string;
+  email: string;
+  score: number;
+
+  constructor(id: number, name: string, email: string, score: number) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.score = score;
+  }
+
+}

@@ -7,10 +7,19 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      coming soon ...
-    </ion-item>
-  </ion-list>
+  <ion-grid>
+    <ion-row>
+    <ion-col col-8 offset-2>
+        <ion-list>
+          <ion-item *ngFor="let score of scores">
+            <ion-avatar item-right>
+             <h1>{{score.score}}</h1>
+           </ion-avatar>
+           <h2><ion-icon name="person"></ion-icon> {{score.name}}</h2>
+           <p>{{score.email}}</p>
+         </ion-item>
+       </ion-list>
+     </ion-col>
+   </ion-row>
+ </ion-grid>
 </ion-content>

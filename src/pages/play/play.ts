@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Http, Headers, Response } from '@angular/http';
 
 import { Card } from '../../app/app.component';
+import { Score } from '../../app/app.component';
 
 @Component({
 	selector: 'page-play',
@@ -16,7 +18,7 @@ export class PlayPage {
 
 	CARDS: Card[] = [];
 
-	constructor(public navCtrl: NavController) {
+	constructor(public navCtrl: NavController, private http: Http) {
 		this.reset();
 	};
 
@@ -36,9 +38,7 @@ export class PlayPage {
 	};
 
 	shuffleCards() {
-		var i = 0
-			, j = 0
-			, temp = null;
+		var j = 0, temp = null;
 
 		for (var i = this.CARDS.length - 1; i > 0; i -= 1) {
 			j = Math.floor(Math.random() * (i + 1));
@@ -62,23 +62,40 @@ export class PlayPage {
 					this.isRunning = true;
 					card.isOpen = !card.isOpen;
 					setTimeout(() => {
-						// if (this.activeCard) {
-							if (this.activeCard.color == card.color) {
-								this.matches++;
-								this.activeCard.isMatched = true;
-								card.isMatched = true;
-								this.activeCard = null;
-							} else {
-								this.activeCard.isOpen = false;
-								card.isOpen = false;
-								this.activeCard = null;
-							}
-						// }
+						if (this.activeCard.color == card.color) {
+							this.matches++;
+							this.activeCard.isMatched = true;
+							card.isMatched = true;
+							this.activeCard = null;
+						} else {
+							this.activeCard.isOpen = false;
+							card.isOpen = false;
+							this.activeCard = null;
+						}
 						this.isRunning = false;
+						if (this.matches == 8) {
+							this.saveScores();
+						}
 					}, 500);
 				}
 			}
 		}
 	};
+
+	saveScores() {
+		var score = new Score(1, "John Doe", "john.doe@gmail.com", 10);
+		let bodyString = JSON.stringify(score); 
+		let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Basic YWJkOWQ3MjgtMzA0Yi00ZjhjLWJiZmEtOTU5NDUzZmZiYjU5OjMwYzQyYjM3LTgxMTEtNGRhZC1hYWI4LTM3Yzc0MTFiN2RlYQ==' });
+
+		this.http.post("https://scores.restlet.net:443/v1/scores/", bodyString, {"headers": headers})
+                         .map((res:Response) => res.json())
+                         .subscribe(
+                                score => {
+                                    console.log(score)
+                                }, 
+                                err => {
+                                    console.log(err);
+                                });;
+	}
 
 }
