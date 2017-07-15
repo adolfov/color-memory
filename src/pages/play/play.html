@@ -1,0 +1,142 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Play</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Welcome to Colour Memory!</h2>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-9>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[0])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[0].isMatched" [ngClass]="CARDS[0].isOpen ? CARDS[0].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[1])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[1].isMatched" [ngClass]="CARDS[1].isOpen ? CARDS[1].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[2])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[2].isMatched" [ngClass]="CARDS[2].isOpen ? CARDS[2].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[3])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[3].isMatched" [ngClass]="CARDS[3].isOpen ? CARDS[3].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[4])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[4].isMatched" [ngClass]="CARDS[4].isOpen ? CARDS[4].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[5])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[5].isMatched" [ngClass]="CARDS[5].isOpen ? CARDS[5].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[6])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[6].isMatched" [ngClass]="CARDS[6].isOpen ? CARDS[6].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[7])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[7].isMatched" [ngClass]="CARDS[7].isOpen ? CARDS[7].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[8])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[8].isMatched" [ngClass]="CARDS[8].isOpen ? CARDS[8].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[9])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[9].isMatched" [ngClass]="CARDS[9].isOpen ? CARDS[9].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[10])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[10].isMatched" [ngClass]="CARDS[10].isOpen ? CARDS[10].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[11])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[11].isMatched" [ngClass]="CARDS[11].isOpen ? CARDS[11].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[12])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[12].isMatched" [ngClass]="CARDS[12].isOpen ? CARDS[12].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[13])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[13].isMatched" [ngClass]="CARDS[13].isOpen ? CARDS[13].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[14])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[14].isMatched" [ngClass]="CARDS[14].isOpen ? CARDS[14].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col col-3>
+              <ion-card (click)="cardClick(CARDS[15])">
+                <ion-card-content>
+                  <img [hidden]="CARDS[15].isMatched" [ngClass]="CARDS[15].isOpen ? CARDS[15].color : 'close'">
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+      <ion-col col-3>
+        <h5>Clicks {{clicks}}</h5>
+        <h5>Matches {{matches}}</h5>
+        <button ion-button (click)="reset()">Reset</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

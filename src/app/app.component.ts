@@ -9,7 +9,7 @@ import { TabsPage } from '../pages/tabs/tabs';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  rootPage: any = TabsPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -18,5 +18,19 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+  }
+}
+
+export class Card {
+  id: number;
+  color: string;
+  isOpen: boolean;
+  isMatched: boolean;
+
+  constructor(id: number, color: string) {
+    this.id = id;
+    this.color = color;
+    this.isOpen = false;
+    this.isMatched = false;
   }
 }

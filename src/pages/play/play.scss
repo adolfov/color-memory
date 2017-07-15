@@ -1,0 +1,48 @@
+page-play {
+
+	.close {
+		background: url("../assets/card_bg.gif") no-repeat;
+		background-size: 100%;
+	}
+
+	.close {
+		background-color: white;
+	}
+
+	.colour1 {
+		background-image: url("../assets/colour1.gif") !important;
+	}
+	.colour2 {
+		background-image: url("../assets/colour2.gif") !important;
+	}
+	.colour3 {
+		background-image: url("../assets/colour3.gif") !important;
+	}
+	.colour4 {
+		background-image: url("../assets/colour4.gif") !important;
+	}
+	.colour5 {
+		background-image: url("../assets/colour5.gif") !important;
+	}
+	.colour6 {
+		background-image: url("../assets/colour6.gif") !important;
+	}
+	.colour7 {
+		background-image: url("../assets/colour7.gif") !important;
+	}
+	.colour8 {
+		background-image: url("../assets/colour8.gif") !important;
+	}
+
+	ion-card-content {
+		border-radius: 5px;
+		padding: 0px !important;
+		
+		img {
+    		width: 100%;
+    		height: 60px;
+		}
+
+	}
+
+}
