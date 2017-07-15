@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { Http, Headers, Response } from '@angular/http';
 
 import { Card } from '../../app/app.component';
@@ -12,20 +12,20 @@ import { Score } from '../../app/app.component';
 export class PlayPage {
 
 	activeCard = null;
-	clicks = 0;
+	attempts = 0;
 	matches = 0;
 	isRunning = false;
 
 	CARDS: Card[] = [];
 
-	constructor(public navCtrl: NavController, private http: Http) {
+	constructor(public navCtrl: NavController, public alertCtrl: AlertController, private http: Http) {
 		this.reset();
 	};
 
 	reset() {
 		this.generateCards();
 		this.shuffleCards();
-		this.clicks = 0;
+		this.attempts = 0;
 		this.matches = 0;
 	}
 
@@ -53,8 +53,8 @@ export class PlayPage {
 			if (!this.activeCard) {
 				this.activeCard = card;
 				this.activeCard.isOpen = !this.activeCard.isOpen;
-				this.clicks++;
 			} else {
+				this.attempts++;
 				if (this.activeCard.id == card.id) {
 					this.activeCard.isOpen = !this.activeCard.isOpen;
 					this.activeCard = null;
@@ -74,7 +74,7 @@ export class PlayPage {
 						}
 						this.isRunning = false;
 						if (this.matches == 8) {
-							this.saveScores();
+							this.showPrompt();
 						}
 					}, 500);
 				}
@@ -82,20 +82,57 @@ export class PlayPage {
 		}
 	};
 
-	saveScores() {
-		var score = new Score(1, "John Doe", "john.doe@gmail.com", 10);
+	saveScores(name, email) {
+		var scoreValue = 100 + this.matches - this.attempts;
+		var score = new Score(name, email, scoreValue);
 		let bodyString = JSON.stringify(score); 
 		let headers = new Headers({ 'Content-type': 'application/json', 'Authorization': 'Basic YWJkOWQ3MjgtMzA0Yi00ZjhjLWJiZmEtOTU5NDUzZmZiYjU5OjMwYzQyYjM3LTgxMTEtNGRhZC1hYWI4LTM3Yzc0MTFiN2RlYQ==' });
 
-		this.http.post("https://scores.restlet.net:443/v1/scores/", bodyString, {"headers": headers})
-                         .map((res:Response) => res.json())
-                         .subscribe(
-                                score => {
-                                    console.log(score)
-                                }, 
-                                err => {
-                                    console.log(err);
-                                });;
+		this.http.post("https://scores.restlet.net:443/v1/scores?sort=score%20DESC,", bodyString, {"headers": headers})
+		.map((res:Response) => res.json())
+		.subscribe(
+			score => {
+				console.log(score)
+			}, 
+			err => {
+				console.log(err);
+			});;
 	}
+
+	showPrompt() {
+		let prompt = this.alertCtrl.create({
+			title: 'Save your Score',
+			message: "Enter a name and email to save your score",
+			inputs: [
+			{
+				name: 'Name',
+				placeholder: 'Jane Doe'
+			},
+			{
+				name: 'Email',
+				placeholder: 'jane.doe@gmail.com'
+			}
+			],
+			buttons: [
+			{
+				text: 'Cancel',
+				handler: data => {
+					this.reset();
+				}
+			},
+			{
+				text: 'Save',
+				handler: data => {
+					if (data.Name) {
+						this.saveScores(data.Name, data.Email);
+					}
+					this.reset();
+				}
+			}
+			]
+		});
+		prompt.present();
+	}
+
 
 }

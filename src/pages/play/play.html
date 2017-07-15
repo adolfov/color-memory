@@ -133,8 +133,10 @@
         </ion-grid>
       </ion-col>
       <ion-col col-3>
-        <h5>Clicks {{clicks}}</h5>
+        <img src="../assets/logo.png">
+        <h5>Attempts {{attempts}}</h5>
         <h5>Matches {{matches}}</h5>
+        <h4>Score {{100 - attempts + matches}}</h4>
         <button ion-button (click)="reset()">Reset</button>
       </ion-col>
     </ion-row>

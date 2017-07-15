@@ -36,13 +36,11 @@ export class Card {
 }
 
 export class Score {
-  id: number;
   name: string;
   email: string;
   score: number;
 
-  constructor(id: number, name: string, email: string, score: number) {
-    this.id = id;
+  constructor(name: string, email: string, score: number) {
     this.name = name;
     this.email = email;
     this.score = score;
