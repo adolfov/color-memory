@@ -1,4 +1,6 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# color-memory
+simple memory game in ionic
+
 
 ## How to use this template
 
